@@ -25,3 +25,12 @@ resource "azurerm_storage_account" "demo_account" {
   ]
 }
 
+# erstellen des blob containers
+resource "azurerm_storage_container" "tsblobcontainer" {
+  name                  = "tsblobcontainer"
+  storage_account_name  = azurerm_storage_account.demo_account.name
+  container_access_type = "blob"
+  depends_on = [
+    azurerm_storage_account.demo_account
+  ]
+}
